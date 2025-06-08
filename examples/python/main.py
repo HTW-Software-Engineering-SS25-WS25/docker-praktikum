@@ -50,6 +50,18 @@ next_id = 3
 # GET all users
 
 
+@app.get("/", tags=["root"], summary="Root endpoint")
+def read_root():
+    """
+    Root endpoint to check if the API is running
+    """
+    return {
+        "version": "1.0",
+        "description": "Users API",
+        "documentation": "Visit /docs for Swagger UI or /redoc for ReDoc"
+    }
+
+
 @app.get("/users", response_model=List[User], tags=["users"], summary="Get all users")
 def get_users():
     """
