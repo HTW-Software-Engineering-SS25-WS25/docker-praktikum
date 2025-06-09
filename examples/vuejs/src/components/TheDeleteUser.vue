@@ -34,7 +34,7 @@ const onSubmit = form.handleSubmit(async (values) => {
     isDeleting.value = true
     errorMessage.value = null
 
-    const response = await fetch(`http://localhost:8000/users/${values.id}`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${values.id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

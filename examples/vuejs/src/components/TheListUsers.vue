@@ -14,7 +14,7 @@ import type { User } from '@/types/models'
 const users = ref<User[]>([])
 
 const getUsers = async () => {
-  const response = await fetch('http://localhost:8000/users')
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/users`)
   users.value = await response.json()
 }
 </script>

@@ -19,7 +19,7 @@ const getUserById = async () => {
   if (!userId.value) return
 
   try {
-    const response = await fetch(`http://localhost:8000/users/${userId.value}`)
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${userId.value}`)
     if (!response.ok) {
       throw new Error('User not found')
     }

@@ -36,7 +36,7 @@ const form = useForm({
 
 const onSubmit = form.handleSubmit(async (values) => {
   try {
-    const response = await fetch('http://localhost:8000/users', {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
