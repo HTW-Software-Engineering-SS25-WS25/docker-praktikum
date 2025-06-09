@@ -2,6 +2,8 @@
 import TheCreateUser from './components/TheCreateUser.vue';
 import TheGetUserById from './components/TheGetUserById.vue';
 import TheListUsers from './components/TheListUsers.vue';
+import ThePutUser from './components/ThePutUser.vue';
+import TheDeleteUser from './components/TheDeleteUser.vue';
 
 
 </script> 
@@ -20,6 +22,12 @@ import TheListUsers from './components/TheListUsers.vue';
     </section>
     <section>
       <TheGetUserById />
+    </section>
+    <section>
+      <ThePutUser />
+    </section>
+    <section>
+      <TheDeleteUser />
     </section>
   </main>
 </template>
