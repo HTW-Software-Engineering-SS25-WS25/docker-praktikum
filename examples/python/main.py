@@ -4,17 +4,14 @@ from typing import Dict, List, Optional
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 
-origins = [
-    "*",  # Allows all origins
-]
-
 app = FastAPI(title="Users API", version="1.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # Allows all origins
+    allow_origins=["*"],  # Or specify your frontend URL
     allow_credentials=True,
-    allow_methods=["*"],  # Allows all methods)
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Pydantic models for request validation and documentation

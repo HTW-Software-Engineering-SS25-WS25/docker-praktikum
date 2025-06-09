@@ -1,0 +1,24 @@
+services:
+  frontend:
+    build:
+      context: ./vuejs
+      dockerfile: 1_base_image.Dockerfile
+      args:
+        VITE_API_URL: /api/
+    image: ghcr.io/htw-software-engineering-ss25-ws25/vuejs-example:latest
+    ports:
+      - "80:80"
+    container_name: frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./python
+      dockerfile: 1_base_image.Dockerfile
+    image: ghcr.io/htw-software-engineering-ss25-ws25/fastapi-example:latest
+    ports:
+      - "8000:8000"
+    container_name: backend
+    restart: unless-stopped
