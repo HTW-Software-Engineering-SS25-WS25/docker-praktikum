@@ -1,0 +1,6 @@
+.gitignore
+venv/
+__pycache__/
+__pytest_cache/
+unit_tests.py
+1_base_image.Dockerfile
