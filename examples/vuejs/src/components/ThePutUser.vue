@@ -56,8 +56,8 @@ const findUser = async () => {
 
     // Set form values
     form.setFieldValue('id', userId.value)
-    form.setFieldValue('name', currentUser.value.name)
-    form.setFieldValue('email', currentUser.value.email)
+    form.setFieldValue('name', currentUser.value?.name ?? '')
+    form.setFieldValue('email', currentUser.value?.email ?? '')
   } catch (error) {
     console.error('Error finding user:', error)
     userFound.value = false
