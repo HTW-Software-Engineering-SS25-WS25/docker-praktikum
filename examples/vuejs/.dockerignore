@@ -3,3 +3,7 @@
 .gitignore
 .prettierrc.json
 README.md
+eslingg.config.ts
+node_modules/
+dist/
+.vscode/
