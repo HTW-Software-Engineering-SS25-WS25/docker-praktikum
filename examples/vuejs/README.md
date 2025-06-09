@@ -1,39 +1,114 @@
-# frontend
+# Vue.js User Management Frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+This frontend application provides a web interface for a user management system, built with Vue 3 and TypeScript. It communicates with a FastAPI backend to perform CRUD operations on user data.
 
-## Recommended IDE Setup
+## Technologies
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **Vue 3**: Progressive JavaScript framework
+- **TypeScript**: Type-safe JavaScript
+- **Vite**: Next-generation frontend build tool
+- **Tailwind CSS**: Utility-first CSS framework
+- **ESLint & Prettier**: Code quality and formatting
+- **Docker**: Containerization
 
-## Type Support for `.vue` Imports in TS
+## Features
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+The frontend application provides user interface components for:
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
+- Listing all users
+- Creating new users
+- Retrieving user details by ID
+- Updating existing user information
+- Deleting users
 
 ## Project Setup
 
-```sh
+### Prerequisites
+
+- Node.js (>= 18)
+- pnpm
+
+### Installation
+
+```bash
+# Install dependencies
 pnpm install
 ```
 
-### Compile and Hot-Reload for Development
+### Development
 
-```sh
+```bash
+# Start development server
 pnpm dev
 ```
 
-### Type-Check, Compile and Minify for Production
+The development server will run on http://localhost:5173 by default.
 
-```sh
+### Build for Production
+
+```bash
+# Build for production
 pnpm build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Type Checking
 
-```sh
+```bash
+# Run type checking
+pnpm type-check
+```
+
+### Linting
+
+```bash
+# Lint the codebase
 pnpm lint
 ```
+
+### Formatting
+
+```bash
+# Format the codebase
+pnpm format
+```
+
+## Docker Integration
+
+The frontend is containerized using Docker with a multi-stage build approach:
+
+1. **Build stage**: Uses Node.js to compile and build the Vue application
+2. **Production stage**: Uses Nginx to serve the static files
+
+The Docker configuration automatically proxies API requests to the backend service.
+
+### Environment Variables
+
+- `VITE_API_URL`: URL path for API requests (default: `/api/`)
+
+## Project Structure
+
+```
+vuejs/
+├── public/            # Static assets
+├── src/
+│   ├── assets/        # Asset files (CSS, images)
+│   ├── components/    # Vue components
+│   │   ├── TheCreateUser.vue    # Create user form
+│   │   ├── TheDeleteUser.vue    # Delete user component
+│   │   ├── TheGetUserById.vue   # User details by ID
+│   │   ├── TheListUsers.vue     # List all users
+│   │   └── ThePutUser.vue       # Update user component
+│   ├── lib/           # Utility functions
+│   ├── types/         # TypeScript type definitions
+│   ├── App.vue        # Root Vue component
+│   └── main.ts        # Application entry point
+├── index.html         # HTML entry point
+├── vite.config.ts     # Vite configuration
+├── tsconfig.json      # TypeScript configuration
+├── .eslintrc.js       # ESLint configuration
+└── 1_base_image.Dockerfile  # Docker configuration
+```
+
+## API Integration
+
+The frontend communicates with the backend API to perform CRUD operations. The API base URL is configured through the `VITE_API_URL` environment variable, which is set during the Docker build process.
