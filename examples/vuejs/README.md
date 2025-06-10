@@ -85,6 +85,33 @@ The Docker configuration automatically proxies API requests to the backend servi
 
 - `VITE_API_URL`: URL path for API requests (default: `/api/`)
 
+### Configuration Files
+
+#### Build and Development
+
+- **`vite.config.ts`**: Configures the Vite build tool, including plugins, server settings, and build options
+- **`tsconfig.json`**: Main TypeScript configuration defining compiler options and project settings
+- **`tsconfig.app.json`**: App-specific TypeScript settings for source code compilation
+- **`tsconfig.node.json`**: TypeScript configuration for build scripts and Node.js environments
+- **`package.json`**: Project metadata, dependencies, and npm/pnpm scripts
+- **`pnpm-lock.yaml`**: Dependency lock file ensuring consistent installations
+
+#### Code Quality
+
+- **`.eslintrc.js`**: ESLint rules and configurations for code linting
+- **`.prettierrc.json`**: Code formatting standards
+- **`.editorconfig`**: Editor settings for consistent coding styles across IDEs
+
+#### Docker and Deployment
+
+- **`1_base_image.Dockerfile`**: Multi-stage Docker configuration for building and deploying the application
+- **`nginx.conf`**: Nginx server configuration for production deployment
+- **`.dockerignore`**: Files to exclude from Docker build context
+
+#### Version Control
+
+- **`.gitignore`**: Files and directories excluded from Git versioning
+
 ## Project Structure
 
 ```
