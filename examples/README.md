@@ -107,7 +107,3 @@ The application uses Docker Compose to orchestrate two containers:
      - Production stage: Nginx to serve the static files
    - Configured to proxy API requests to the backend
    - Exposes port 80
-
-## License
-
-[License information goes here]
