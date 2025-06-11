@@ -24,7 +24,127 @@ Check the Tasks folder for the tasks that you need to complete during the practi
 
 ## Cheatsheet
 
-Heres a cheatsheet with the most important Docker commands:
+Heres a cheatsheet with the most important Docker commands and options you need to know for the practical course. This is not an exhaustive list, but it covers the most commonly used commands and options.
+
+### Dockerfile Commands
+
+### `FROM <image>[:<tag>]`
+Specifies the base image to start building from. Usually the first instruction in a Dockerfile.
+```
+FROM ubuntu:20.04
+FROM node:14-alpine
+```
+
+### `RUN <command>`
+Executes commands in a new layer on top of the current image.
+```
+RUN apt-get update && apt-get install -y curl
+RUN npm install
+```
+
+### `COPY <src> <dest>`
+Copies files or directories from the build context into the image.
+```
+COPY . /app
+COPY package.json /app/
+```
+
+### `ADD <src> <dest>`
+Similar to COPY but with additional features (can extract tar files and download from URLs).
+```
+ADD https://example.com/file.tar.gz /tmp/
+```
+
+### `WORKDIR <path>`
+Sets the working directory for subsequent instructions.
+```
+WORKDIR /app
+```
+
+### `ENV <key>=<value>`
+Sets environment variables inside the container.
+```
+ENV NODE_ENV=production
+ENV PATH="/usr/local/bin:${PATH}"
+```
+
+### `EXPOSE <port>`
+Documents which ports the container will listen on at runtime (doesn't actually publish them).
+```
+EXPOSE 80
+EXPOSE 80/tcp 443/tcp
+```
+
+### `CMD ["executable", "param1", "param2"]`
+Provides defaults for an executing container. Only the last CMD will take effect.
+```
+CMD ["node", "app.js"]
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+### `ENTRYPOINT ["executable", "param1", "param2"]`
+Configures the container to run as an executable. CMD values will be appended as arguments.
+```
+ENTRYPOINT ["npm", "start"]
+```
+
+### `VOLUME ["/data"]`
+Creates a mount point for external volumes.
+```
+VOLUME ["/var/log", "/data"]
+```
+
+### `USER <username or UID>`
+Sets the user that will run subsequent RUN, CMD, or ENTRYPOINT instructions.
+```
+USER node
+```
+
+### `ARG <name>[=<default value>]`
+Defines build-time variables that can be passed at build time.
+```
+ARG VERSION=latest
+ARG BUILD_DATE
+```
+
+### `HEALTHCHECK`
+Tells Docker how to test if the container is still working correctly.
+```
+HEALTHCHECK --interval=5m --timeout=3s CMD curl -f http://localhost/ || exit 1
+```
+
+### Example of a complete Dockerfile:
+```dockerfile
+FROM node:16-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy dependency files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install --production
+
+# Copy application code
+COPY . .
+
+# Set environment variables
+ENV NODE_ENV=production
+ENV PORT=3000
+
+# Expose port
+EXPOSE 3000
+
+# Create volume for persistent data
+VOLUME ["/app/data"]
+
+# Set user
+USER node
+
+# Start the application
+CMD ["node", "server.js"]
+```
 
 ### Basic Docker Commands
 
